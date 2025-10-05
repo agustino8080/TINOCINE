@@ -1,0 +1,70 @@
+.navbar {
+  background-color: #07112c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 40px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  font-weight: bold;
+}
+
+.nav-links li {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-links li:hover {
+  color: #ccc;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cinema-select {
+  display: flex;
+  align-items: center;
+  background-color: #325bd4;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.cinema-select select {
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: 500;
+  outline: none;
+}
+
+.icon-btn {
+  background-color: #12214d;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.icon-btn:hover {
+  background-color: #1a2b5c;
+}
+
+.icon {
+  margin-right: 6px;
+}

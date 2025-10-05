@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Este código CSS debe ir en tu archivo de estilos global */
+
+.swiper-pagination-bullet {
+  /* Aumenta el ancho y alto del punto */
+  width: 12px !important; 
+  height: 12px !important;
+  /* Opcional: aumenta la separación entre ellos */
+  margin: 0 6px !important;
+  /* Opcional: cambia el color de fondo por defecto */
+  background: rgba(255, 255, 255, 0.5) !important;
+  /* Asegura que el color se aplique si ya hay otros estilos */
+  opacity: 1 !important; 
+}
+
+.swiper-pagination-bullet-active {
+  /* Color para el punto activo (el que indica la diapositiva actual) */
+  background: #ffffff !important; /* Blanco puro */
+}
