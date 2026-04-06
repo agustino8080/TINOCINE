@@ -3,6 +3,55 @@ import { useTheme } from '../contexts/ThemeContext';
 import 'video.js/dist/video-js.css';
 import videojs from 'video.js';
 
+// Configurar idioma español en Video.js
+videojs.addLanguage('es', {
+  'Play': 'Reproducir',
+  'Pause': 'Pausa',
+  'Current Time': 'Tiempo actual',
+  'Duration': 'Duración',
+  'Remaining Time': 'Tiempo restante',
+  'Stream Type': 'Tipo de flujo',
+  'LIVE': 'DIRECTO',
+  'Loaded': 'Cargado',
+  'Progress': 'Progreso',
+  'Progress Bar': 'Barra de progreso',
+  'Seek to': 'Ir a',
+  'Playback Rate': 'Velocidad de reproducción',
+  'Subtitles': 'Subtítulos',
+  'subtitles off': 'Subtítulos desactivados',
+  'Captions': 'Leyendas',
+  'captions off': 'Leyendas desactivadas',
+  'Chapters': 'Capítulos',
+  'Descriptions': 'Descripciones',
+  'descriptions off': 'Descripciones desactivadas',
+  'Audio Track': 'Pista de audio',
+  'Volume Level': 'Nivel de volumen',
+  'You aborted the video playback': 'Abortaste la reproducción del vídeo',
+  'A network error caused the video download to fail part-way.': 'Un error de red interrumpió la descarga del vídeo.',
+  'The video format is not supported.': 'El formato de vídeo no es compatible.',
+  'The video file could not be played.': 'No se puede reproducir el archivo de vídeo.',
+  'A decryption error occurred.': 'Ocurrió un error de desencriptación.',
+  'Play Video': 'Reproducir vídeo',
+  'Close': 'Cerrar',
+  'Close Modal Dialog': 'Cerrar diálogo modal',
+  'Modal Window': 'Ventana modal',
+  'This is a modal window': 'Esta es una ventana modal',
+  'This modal can be closed by pressing the Escape key or activating the close button.': 'Este modal se puede cerrar presionando la tecla Escape o activando el botón cerrar.',
+  ', opens captions settings dialog': ', abre el diálogo de configuración de leyendas',
+  ', opens subtitles settings dialog': ', abre el diálogo de configuración de subtítulos',
+  ', opens descriptions settings dialog': ', abre el diálogo de configuración de descripciones',
+  ', opens chapters settings dialog': ', abre el diálogo de configuración de capítulos',
+  'Captions and Subtitles': 'Leyendas y subtítulos',
+  'Unknown': 'Desconocido',
+  'Close Menu': 'Cerrar menú',
+  'Go to the previous slide': 'Ir a la diapositiva anterior',
+  'Go to the next slide': 'Ir a la siguiente diapositiva',
+  'Mute': 'Silenciar',
+  'Unmute': 'Activar sonido',
+  'Fullscreen': 'Pantalla completa',
+  'Exit Fullscreen': 'Salir de pantalla completa',
+});
+
 function VideoPlayer({ movie, isOpen, onClose }) {
   const { theme } = useTheme();
   const videoRef = useRef(null);
@@ -19,6 +68,7 @@ function VideoPlayer({ movie, isOpen, onClose }) {
           preload: 'auto',
           fluid: true,
           responsive: true,
+          language: 'es',
           playbackRates: [0.5, 1, 1.5, 2],
           controlBar: {
             currentTimeDisplay: true,
