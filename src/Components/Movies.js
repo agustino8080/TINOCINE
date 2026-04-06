@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
-import { fetchMovies } from "../services/movieService";
+import { fetchMovies, MOVIE_LISTS } from "../services/movieService";
 import { useTheme } from "../contexts/ThemeContext";
 import VideoPlayer from "./VideoPlayer";
 
@@ -11,6 +11,7 @@ const Movies = forwardRef((props, ref) => {
   const [error, setError] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [playerOpen, setPlayerOpen] = useState(false);
+  const [selectedListId, setSelectedListId] = useState('fullrow');
 
   // Exponer métodos al componente padre
   useImperativeHandle(ref, () => ({
@@ -19,10 +20,11 @@ const Movies = forwardRef((props, ref) => {
     handleSortByYear
   }));
 
-  // Carga películas del M3U al montar
+  // Carga películas del M3U al montar o cambiar lista
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     loadMovies();
-  }, []);
+  }, [selectedListId]);
 
   // Carga películas del M3U
   const loadMovies = async () => {
@@ -30,9 +32,9 @@ const Movies = forwardRef((props, ref) => {
       setLoading(true);
       setError(null);
       
-      console.log('📡 Descargando lista M3U...');
+      console.log('📡 Descargando lista M3U:', selectedListId);
       
-      let backendMovies = await fetchMovies();
+      let backendMovies = await fetchMovies(selectedListId);
       
       // 🧪 PELÍCULA DE PRUEBA - Video con CORS habilitado
       const testMovie = {
@@ -117,6 +119,28 @@ return (
         <h1 className="text-center text-3xl md:text-4xl font-bold mb-8 transition-colors duration-300" style={{ color: theme.colors.text }}>
           Cartelera
         </h1>
+        
+        {/* Selector de Listas */}
+        <div className="mb-8 flex flex-wrap gap-3 justify-center">
+          {Object.values(MOVIE_LISTS).map((list) => (
+            <button
+              key={list.id}
+              onClick={() => setSelectedListId(list.id)}
+              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
+                selectedListId === list.id
+                  ? 'scale-105 shadow-lg'
+                  : 'hover:scale-102'
+              }`}
+              style={{
+                backgroundColor: selectedListId === list.id ? theme.colors.primary : theme.colors.card,
+                color: selectedListId === list.id ? '#fff' : theme.colors.text,
+                border: `2px solid ${selectedListId === list.id ? theme.colors.primary : 'transparent'}`,
+              }}
+            >
+              {list.name}
+            </button>
+          ))}
+        </div>
         
         {/* Mensajes de estado */}
         {error && (

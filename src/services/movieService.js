@@ -1,15 +1,32 @@
 // Movie Service - Conecta con lista M3U
-const M3U_URL = 'https://raw.githubusercontent.com/agustino8080/listam3u/refs/heads/main/lista_fullrow.m3u';
+
+// Listas de películas disponibles
+export const MOVIE_LISTS = {
+  fullrow: {
+    id: 'fullrow',
+    name: 'Películas Completas',
+    url: 'https://raw.githubusercontent.com/agustino8080/listam3u/refs/heads/main/lista_fullrow.m3u'
+  },
+  comedia: {
+    id: 'comedia',
+    name: 'Comedias',
+    url: 'https://raw.githubusercontent.com/agustino8080/listam3u/refs/heads/main/comedia1tv.m3u'
+  }
+};
 
 /**
  * Obtiene todas las películas desde la lista M3U
+ * @param {string} listId - ID de la lista ('fullrow' o 'comedia')
  * @returns {Promise<Array>} Array de películas
  */
-export const fetchMovies = async () => {
+export const fetchMovies = async (listId = 'fullrow') => {
   try {
-    console.log('📡 Descargando lista M3U desde:', M3U_URL);
+    const selectedList = MOVIE_LISTS[listId] || MOVIE_LISTS.fullrow;
+    const url = selectedList.url;
+    console.log('📡 Descargando lista M3U:', selectedList.name);
+    console.log('📡 URL:', url);
     
-    const response = await fetch(M3U_URL);
+    const response = await fetch(url);
     
     if (!response.ok) {
       throw new Error(`Error ${response.status}: ${response.statusText}`);
