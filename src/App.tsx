@@ -7,9 +7,11 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 
 
 function App() {
+  const basename = process.env.NODE_ENV === 'production' ? '/' : '/cinewatch';
+  
   return (
     <ThemeProvider>
-      <Router basename="/">
+      <Router basename={basename}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
