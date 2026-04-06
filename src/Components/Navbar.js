@@ -1,43 +1,45 @@
-import { useState } from 'react';
-import { FaSearch, FaUser, FaMapMarkerAlt } from "react-icons/fa";
-import { Link } from 'react-router-dom'; // ← Importar Link
+import React from 'react';
+import { useTheme } from '../contexts/ThemeContext';
+import ThemeSwitcher from './ThemeSwitcher';
 
+function Navbar({ onMainClick, onSortAZ, onSortByYear }) {
+  const { theme } = useTheme();
 
-function Navbar() {
   return (
     <>
-      <nav className="bg-[#69D6FF] text-white flex items-center justify-between px-8 py-3">
+      <nav
+        className={`${theme.navbar} flex items-center justify-between px-8 py-3 transition-all duration-300`}
+        style={{
+          backgroundColor: theme.colors.primary,
+        }}
+      >
         <ul className="hidden md:flex gap-6 font-semibold">
-          <li className="cursor-pointer hover:text-gray-300">Películas</li>
-          <li className="cursor-pointer hover:text-gray-300">Alimentos</li>
-          <li className="cursor-pointer hover:text-gray-300">Recomendaciones</li>
-          <li className="cursor-pointer hover:text-gray-300">Próximos Estrenos</li>
+          <li 
+            onClick={onMainClick}
+            className="cursor-pointer hover:opacity-75 transition-opacity"
+          >
+            🏠 Principal
+          </li>
+          <li 
+            onClick={onSortAZ}
+            className="cursor-pointer hover:opacity-75 transition-opacity"
+          >
+            📽️ Películas A-Z
+          </li>
+          <li 
+            onClick={onSortByYear}
+            className="cursor-pointer hover:opacity-75 transition-opacity"
+          >
+            📅 AÑO
+          </li>
         </ul>
 
         <div className="flex justify-center items-center">
-          <span className=" text-2xl font-bold">CineWatch</span>
+          <span className="text-2xl font-bold">CineWatch</span>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden md:flex bg-[#34B0D9] items-center px-3 py-1 rounded-md cursor-pointer">
-            <FaMapMarkerAlt className="mr-2" />
-            <select className="bg-[#34B0D9] text-white outline-none rounded-md px-2 py-1">
-              <option>Elige tu cine</option>
-              <option>Cine A</option>
-              <option>Cine B</option>
-            </select>
-          </div>
-
-          <button className="p-2 rounded-md hover:bg-[#34B0D9]">
-            <FaSearch />
-          </button>
-
-          <button>
-          <Link to="/Login" className="p-2 rounded-md hover:bg-[#34B0D9] flex items-center">
-           <FaUser />
-          </Link>
-           
-          </button>
+          <ThemeSwitcher />
         </div>
       </nav>
     </>

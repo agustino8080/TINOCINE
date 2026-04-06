@@ -3,16 +3,19 @@ import React from "react";
 import "./App.css";
 import Login from './Pages/Login';
 import Home from "./Pages/Home";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 
 function App() {
   return (
-    <Router basename="/cinewatch">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router basename="/cinewatch">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 

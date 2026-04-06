@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaTimes, FaExclamationCircle } from 'react-icons/fa';
+import { FaExclamationCircle } from 'react-icons/fa';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -148,12 +148,13 @@ function Login() {
                     </div>
 
                     <div className="text-left">
-                        <a 
-                            href="#" 
-                            className="text-sm text-blue-600 hover:text-blue-800 hover:underline font-medium"
+                        <button 
+                            type="button"
+                            onClick={() => {}}
+                            className="text-sm text-blue-600 hover:text-blue-800 hover:underline font-medium cursor-pointer"
                         >
                             Olvidé mi contraseña
-                        </a>
+                        </button>
                     </div>
 
                     <button
@@ -173,9 +174,9 @@ function Login() {
 
                 <div className="mt-8 text-center text-xs text-gray-500">
                     Al iniciar sesión, aceptas nuestros{' '}
-                    <a href="#" className="text-blue-600 hover:underline">
+                    <button type="button" onClick={() => {}} className="text-blue-600 hover:underline cursor-pointer">
                         Términos y Condiciones
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
