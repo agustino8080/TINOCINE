@@ -9,7 +9,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 function App() {
   return (
     <ThemeProvider>
-      <Router basename="/cinewatch">
+      <Router basename="/">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
